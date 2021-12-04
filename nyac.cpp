@@ -16,7 +16,7 @@ void nyaError(const string &line, int lineNum, unsigned int charNum, const strin
     for (int i = 0; i < charsBefore; i++) arrowLine += ' ';
     arrowLine += '^';
     for (int i = 0; i < charsAfter; i++) arrowLine += '~';
-    cout << arrowLine << '\n' << message << '\n' << "Compilation terminated.";
+    cout << arrowLine << '\n' << message << '\n' << "Compilation terminated.\n";
     if(!impure) {
         exit(0);
     }
@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
         cout << "Usage: nyac <yourfile.nya>\n"
                 "Options: \n"
                 "-o <filename>: define output filename\n"
-                "-impure: allows for code that has invalid \"nya\"s, like \"na~\"";
+                "-impure: allows for code that has invalid \"nya\"s, like \"na~\"\n";
         return 0;
     }
 
@@ -113,7 +113,7 @@ int main(int argc, char **argv) {
     fstream nyaInput;
     nyaInput.open(argv[1], ios::in);
     if (!nyaInput.good()) {
-        cout << "Couldn't access " << argv[1];
+        cout << "Couldn't access " << argv[1] << '\n';
         return 0;
     }
 
@@ -157,7 +157,7 @@ int main(int argc, char **argv) {
     fstream cppOutput;
     cppOutput.open(filename.c_str(), ios::out);
     if (!cppOutput.good()) {
-        cout << "Couldn't create " << filename << ".nyac";
+        cout << "Couldn't create " << filename << ".nyac\n";
         return 0;
     }
     cppOutput << code;
@@ -167,6 +167,6 @@ int main(int argc, char **argv) {
     system(gppCommand.c_str());
     remove(filename.c_str());
 
-    cout << argv[1] << " was successfully compiled into " << outputFilename << '\n' << "Nyaaa~~";
+    cout << argv[1] << " was successfully compiled into " << outputFilename << '\n' << "Nyaaa~~\n";
     return 0;
 }
