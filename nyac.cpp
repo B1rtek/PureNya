@@ -10,7 +10,7 @@ void nyaError(const string &line, int lineNum, unsigned int charNum, const strin
     }
     cout << "Line " << +lineNum << ", " << charNum + 1 << ": \n";
     unsigned int charsBefore = min(unsigned(10), charNum);
-    unsigned int charsAfter = min(line.size() - 1 - charNum, unsigned(10));
+    unsigned int charsAfter = min(unsigned(line.size() - 1 - charNum), unsigned(10));
     cout << line.substr(charNum - charsBefore, charsBefore + 1 + charsAfter) << '\n';
     string arrowLine;
     for (int i = 0; i < charsBefore; i++) arrowLine += ' ';
