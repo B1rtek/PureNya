@@ -10,7 +10,7 @@ The nya converter (nyaconv) takes the input file and saves it in the nya languag
 The original interpreter can be found [here](https://github.com/sech1p/nya)
 
 
-##Building
+## Building
 ```shell
 $ git clone https://github.com/B1rtek/PureNya.git
 $ mkdir build
