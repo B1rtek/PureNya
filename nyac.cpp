@@ -5,19 +5,20 @@
 using namespace std;
 
 void nyaError(const string &line, int lineNum, unsigned int charNum, const string &message, bool &impure) {
-    if(impure) {
-        cout<<"Warning: Your nya~ is impure. ";
+    if (impure) {
+        cout << "Warning: Your nya~ is impure. ";
     }
     cout << "Line " << +lineNum << ", " << charNum + 1 << ": \n";
     unsigned int charsBefore = min(unsigned(10), charNum);
     unsigned int charsAfter = min(unsigned(line.size() - 1 - charNum), unsigned(10));
     cout << line.substr(charNum - charsBefore, charsBefore + 1 + charsAfter) << '\n';
     string arrowLine;
-    for (int i = 0; i < charsBefore; i++) arrowLine += ' ';
+    for (unsigned int i = 0; i < charsBefore; i++) arrowLine += ' ';
     arrowLine += '^';
-    for (int i = 0; i < charsAfter; i++) arrowLine += '~';
-    cout << arrowLine << '\n' << message << '\n' << "Compilation terminated.\n";
-    if(!impure) {
+    for (unsigned int i = 0; i < charsAfter; i++) arrowLine += '~';
+    cout << arrowLine << '\n' << message << '\n';
+    if (!impure) {
+        cout << "Compilation terminated.\n";
         exit(0);
     }
 }
@@ -25,7 +26,7 @@ void nyaError(const string &line, int lineNum, unsigned int charNum, const strin
 
 string evaluateNya(int lineNum, unsigned int startChar, string nya, const string &line, bool &impure) {
     int n = 0, y = 0, a = 0, tilde = 0;
-    for (int i = 0; i < nya.size(); i++) {
+    for (unsigned int i = 0; i < nya.size(); i++) {
         if (nya[i] == 'n' || nya[i] == 'N') {
             if (y == 0 && a == 0 && tilde == 0) {
                 n++;
@@ -164,8 +165,12 @@ int main(int argc, char **argv) {
     cppOutput.close();
 
     string gppCommand = "g++ -x c++ " + filename + " -o " + outputFilename;
-    system(gppCommand.c_str());
+    int gppReturn = system(gppCommand.c_str());
     remove(filename.c_str());
+    if (gppReturn != 0) {
+        cout << "g++ was not found on this computer, terminating...";
+        return 0;
+    }
 
     cout << argv[1] << " was successfully compiled into " << outputFilename << '\n' << "Nyaaa~~\n";
     return 0;
