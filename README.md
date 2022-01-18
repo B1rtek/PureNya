@@ -13,7 +13,9 @@ The original interpreter can be found [here](https://github.com/sech1p/nya)
 ## Building
 ```shell
 $ git clone https://github.com/B1rtek/PureNya.git
+$ cd PureNya
 $ mkdir build
+$ cd build
 $ cmake ..
 $ make
 ```
